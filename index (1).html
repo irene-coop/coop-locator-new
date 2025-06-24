@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>主婦聯盟合作社｜據點查詢</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: "Noto Sans TC", sans-serif;
+      background-color: #f3f6f4;
+      color: #2e2e2e;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #2e7d32;
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .container {
+      max-width: 700px;
+      margin: 2rem auto;
+      background: #fff;
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #2e7d32;
+    }
+    select {
+      width: 100%;
+      padding: 0.8rem;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    button {
+      background-color: #2e7d32;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #256329;
+    }
+    .result {
+      margin-top: 2rem;
+      padding: 1rem;
+      background-color: #f0f9f0;
+      border-left: 6px solid #66bb6a;
+      border-radius: 4px;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #888;
+      padding: 1rem 0;
+      background-color: #f1f1f1;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>台灣主婦聯盟生活消費合作社</h2>
+    <p>新竹與桃園地區｜最近據點查詢工具</p>
+  </header>
+
+  <div class="container">
+    <h1>選擇你所在的區域</h1>
+    <select id="region">
+      <option value="">請選擇</option>
+      <option value="東區">新竹市 東區</option>
+      <option value="竹北">新竹縣 竹北市</option>
+      <option value="中壢">桃園市 中壢區</option>
+      <option value="桃園">桃園市 桃園區</option>
+      <option value="龍潭">桃園市 龍潭區</option>
+    </select>
+    <button onclick="showNearest()">查詢合作社</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <footer>
+    本查詢工具資料來源：主婦聯盟生活消費合作社 ｜ 設計與開發 by ChatGPT
+  </footer>
+
+  <script>
+    const data = {
+      東區: {
+        name: "關新站",
+        address: "新竹市東區關新一街26號",
+        hours: "週一至五 10:00–20:00；週六 10:00–18:00；週日休息"
+      },
+      竹北: {
+        name: "竹北站",
+        address: "新竹縣竹北市六家五路一段318號",
+        hours: "週一至五 10:00–20:00；週六 10:00–18:00；週日休息"
+      },
+      中壢: {
+        name: "中壢站",
+        address: "桃園市中壢區廣州路220號",
+        hours: "週一至五 10:00–20:00；週六 10:00–18:00；週日休息"
+      },
+      桃園: {
+        name: "桃園站",
+        address: "桃園市桃園區三民路三段28-1號",
+        hours: "週一至五 10:00–20:00；週六 10:00–18:00；週日休息"
+      },
+      龍潭: {
+        name: "龍潭站",
+        address: "桃園市龍潭區龍華路245號1樓",
+        hours: "週一至五 10:00–20:00；週六 10:00–18:00；週日休息"
+      }
+    };
+
+    function showNearest() {
+      const region = document.getElementById("region").value;
+      const resultDiv = document.getElementById("result");
+      if (!region || !data[region]) {
+        resultDiv.innerHTML = "請先選擇一個區域。";
+        return;
+      }
+      const station = data[region];
+      resultDiv.innerHTML = `
+        <h2>🔍 推薦據點：${station.name}</h2>
+        <p><strong>地址：</strong>${station.address}</p>
+        <p><strong>營業時間：</strong>${station.hours}</p>
+      `;
+    }
+  </script>
+</body>
+</html>
